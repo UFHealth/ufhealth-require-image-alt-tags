@@ -1,0 +1,10 @@
+# Ignore system files
+.DS_Store
+.idea
+node_modules
+vendor
+
+# Ignore processed results
+/assets/js/*.js
+/lang
+.env

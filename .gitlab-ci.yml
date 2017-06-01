@@ -1,0 +1,52 @@
+variables:
+  GIT_SSL_NO_VERIFY: 'true'
+
+stages:
+  - build
+  - test
+  - deploy
+
+
+before_script:
+  # Install git and others, the php image doesn't have installed.
+  - apt-get update -yqq
+  - curl -sL https://deb.nodesource.com/setup_7.x | bash -
+  - apt-get install git unzip libxml2-dev libldb-dev libldap2-dev nodejs nodejs -yqq
+  - npm -g update
+  # Install composer.
+  - curl -sS https://getcomposer.org/installer | php
+
+build_assets:
+  stage: build
+  image: php:7.1
+  script:
+    # Make sure Gulp is preset
+    - npm -g install grunt
+    # Install all project dependencies
+    - php composer.phar install --no-scripts
+    # Install and build Node requirements
+    - npm install
+    - grunt --production
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - node_modules/
+      - vendor/
+      - assets/js/
+      - lang/
+  cache:
+    paths:
+      - node_modules/
+      - vendor/
+
+# Test PHP7.0
+test:7.0:
+  image: php:7.0
+  script:
+  - vendor/bin/phpunit --configuration phpunit.xml
+
+# Test PHP 7.1
+test:7.1:
+  image: php:7.1
+  script:
+  - vendor/bin/phpunit --configuration phpunit.xml
