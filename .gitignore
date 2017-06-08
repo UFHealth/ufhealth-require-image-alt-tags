@@ -195,8 +195,7 @@ tmtags
 # Build Assets
 node_modules
 vendor
-lang/*.pot
-assets/css
-!assets/css/scss
-assets/js
-!assets/js/src
+languages/*.pot
+assets/css/*.css
+assets/css/*.map
+assets/js/*.js
