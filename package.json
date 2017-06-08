@@ -1,5 +1,5 @@
 {
-	"name": "ufhealth-require-image-alt-tag",
+	"name": "ufhealth-require-image-alt-tags",
 	"private": true,
 	"devDependencies": {
 		"grunt": "~1.0.1",
@@ -17,6 +17,6 @@
 	"author": "Chris Wiegman",
 	"repository": {
 		"type": "git",
-		"url": "https://gitlab.ahc.ufl.edu/WebServices/WordPress-Plugins/ufhealth-require-image-alt-tag"
+		"url": "https://gitlab.ahc.ufl.edu/WebServices/WordPress-Plugins/ufhealth-require-image-alt-tags"
 	}
 }

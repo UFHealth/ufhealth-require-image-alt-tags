@@ -1,5 +1,5 @@
 {
-	"name":              "WordPress-Plugins/ufhealth-require-image-alt-tag",
+	"name":              "WordPress-Plugins/ufhealth-require-image-alt-tags",
 	"description":       "Forces users to add an ALT tag when adding images to WordPress posts and more.",
 	"type":              "wordpress-plugin",
 	"keywords":          [],

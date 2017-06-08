@@ -1,6 +1,6 @@
 <?php
 
-namespace UFHealth\require_image_alt_tag;
+namespace UFHealth\require_image_alt_tags;
 
 use PHPUnit_Framework_TestResult;
 use WP_Mock;

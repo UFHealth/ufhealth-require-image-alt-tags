@@ -4,11 +4,11 @@ if ( ! defined( 'PROJECT' ) ) {
 }
 
 // Place any additional bootstrapping requirements here for PHP Unit.
-if ( ! defined( 'UFHEALTH_REQUIRE_IMAGE_ALT_TAG_DIR' ) ) {
-	define( 'UFHEALTH_REQUIRE_IMAGE_ALT_TAG_DIR', 'lang_dir' );
+if ( ! defined( 'UFHEALTH_REQUIRE_IMAGE_ALT_TAGS_DIR' ) ) {
+	define( 'UFHEALTH_REQUIRE_IMAGE_ALT_TAGS_DIR', 'lang_dir' );
 }
-if ( ! defined( 'UFHEALTH_REQUIRE_IMAGE_ALT_TAG_PATH' ) ) {
-	define( 'UFHEALTH_REQUIRE_IMAGE_ALT_TAG_PATH', 'path' );
+if ( ! defined( 'UFHEALTH_REQUIRE_IMAGE_ALT_TAGS_PATH' ) ) {
+	define( 'UFHEALTH_REQUIRE_IMAGE_ALT_TAGS_PATH', 'path' );
 }
 
 if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {

@@ -25,8 +25,8 @@ module.exports = function (grunt) {
 					},
 
 					files: {
-						'assets/js/ufhealth-require-image-alt-tag.min.js': [
-							'assets/js/src/ufhealth-require-image-alt-tag.js'
+						'assets/js/ufhealth-require-image-alt-tags.min.js': [
+							'assets/js/src/ufhealth-require-image-alt-tags.js'
 						]
 					}
 				}
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
 				files: {
 					expand:  true,
 					flatten: true,
-					src:     ['assets/css/ufhealth-require-image-alt-tag.css'],
+					src:     ['assets/css/ufhealth-require-image-alt-tags.css'],
 					dest:    'assets/css'
 				}
 			},
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
 					files: [{
 						expand: true,
 						cwd:    'assets/css',
-						src:    ['ufhealth-require-image-alt-tag.css'],
+						src:    ['ufhealth-require-image-alt-tags.css'],
 						dest:   'assets/css',
 						ext:    '.min.css'
 					}]
@@ -82,7 +82,7 @@ module.exports = function (grunt) {
 					},
 
 					files: {
-						'assets/css/ufhealth-require-image-alt-tag.css': 'assets/css/scss/ufhealth-require-image-alt-tag.scss'
+						'assets/css/ufhealth-require-image-alt-tags.css': 'assets/css/scss/ufhealth-require-image-alt-tags.scss'
 					}
 				}
 			},
@@ -96,8 +96,8 @@ module.exports = function (grunt) {
 					options: {
 						type:        'wp-plugin',
 						domainPath:  '/languages',
-						mainFile:    'ufhealth-require-image-alt-tag.php',
-						potFilename: 'ufhealth-require-image-alt-tag.pot'
+						mainFile:    'ufhealth-require-image-alt-tags.php',
+						potFilename: 'ufhealth-require-image-alt-tags.pot'
 					}
 				}
 			},
@@ -125,7 +125,7 @@ module.exports = function (grunt) {
 				options: {
 					jshintrc: true
 				},
-				all:     ['assets/js/src/ufhealth-require-image-alt-tag.js']
+				all:     ['assets/js/src/ufhealth-require-image-alt-tags.js']
 			},
 
 			/**

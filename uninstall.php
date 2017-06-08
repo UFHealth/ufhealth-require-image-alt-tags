@@ -1,17 +1,17 @@
 <?php
 /**
- * Require Image Alt Tag uninstaller
+ * UF Health  Require Image Alt Tags uninstaller
  *
  * Used when clicking "Delete" from inside of WordPress's plugins page.
  *
- * @package UFHealth\require_image_alt_tag
+ * @package UFHealth\require_image_alt_tags
  *
  * @since   1.0
  *
  * @author  Chris Wiegman <cwiegman@ufl.edu>
  */
 
-namespace UFHealth\require_image_alt_tag\Uninstall;
+namespace UFHealth\require_image_alt_tags\Uninstall;
 
 /**
  * Initialize uninstaller
