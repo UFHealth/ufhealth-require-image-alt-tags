@@ -1,6 +1,6 @@
 <?php
 /**
- * UF Health  Require Image Alt Tags uninstaller
+ * UF Health Require Image Alt Tags uninstaller
  *
  * Used when clicking "Delete" from inside of WordPress's plugins page.
  *
