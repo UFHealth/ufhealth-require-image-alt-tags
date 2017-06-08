@@ -1,7 +1,9 @@
-UFHealth Require Image Alt Tags
+Require Image Alt Tag
 =============
 
-Require ALT tags for images inserted into content.
+Forces users to add an ALT tag when adding images to WordPress posts and more.
+
+## Changelog
 
 ##### 1.0
-* Initial Release of revised plugin
+* Initial Release

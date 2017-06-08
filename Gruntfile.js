@@ -1,10 +1,10 @@
-module.exports = function ( grunt ) {
+module.exports = function (grunt) {
 
 	// Start out by loading the grunt modules we'll need
-	require( 'load-grunt-tasks' )( grunt );
+	require('load-grunt-tasks')(grunt);
 
 	// Show elapsed time
-	require( 'time-grunt' )( grunt );
+	require('time-grunt')(grunt);
 
 	grunt.initConfig(
 		{
@@ -12,86 +12,148 @@ module.exports = function ( grunt ) {
 			/**
 			 * Processes and compresses JavaScript.
 			 */
-			uglify : {
+			uglify: {
 
-				production : {
+				production: {
 
-					options : {
-						beautify         : false,
-						preserveComments : false,
-						mangle           : {
-							reserved : ['jQuery']
+					options: {
+						beautify:         false,
+						preserveComments: false,
+						mangle:           {
+							reserved: ['jQuery']
 						}
 					},
 
-					files : {
-						'assets/js/ufhealth-require-img-alt-tag.min.js' : [
-							'assets/js/src/ufhealth-require-img-alt-tag.js'
+					files: {
+						'assets/js/ufhealth-require-image-alt-tag.min.js': [
+							'assets/js/src/ufhealth-require-image-alt-tag.js'
 						]
 					}
 				}
 			},
 
 			/**
-			 * Clean up the JavaScript
+			 * Auto-prefix CSS Elements after SASS is processed.
 			 */
-			jshint : {
-				options : {
-					jshintrc : true
+			autoprefixer: {
+
+				options: {
+					browsers: ['last 5 versions'],
+					map:      true
 				},
-				all     : ['assets/js/src/ufhealth-require-img-alt-tag.js']
+
+				files: {
+					expand:  true,
+					flatten: true,
+					src:     ['assets/css/ufhealth-require-image-alt-tag.css'],
+					dest:    'assets/css'
+				}
 			},
 
 			/**
-			 * Watch scripts and styles for changes
+			 * Minify CSS after prefixes are added
 			 */
-			watch : {
+			cssmin: {
 
-				options : {
-					livereload : true
-				},
+				target: {
 
-				scripts : {
+					files: [{
+						expand: true,
+						cwd:    'assets/css',
+						src:    ['ufhealth-require-image-alt-tag.css'],
+						dest:   'assets/css',
+						ext:    '.min.css'
+					}]
 
-					files : [
-						'assets/js/src/ufhealth-require-img-alt-tag.js'
-					],
+				}
+			},
 
-					tasks : ['uglify:production']
+			/**
+			 * Process SASS
+			 */
+			sass: {
 
+				dist: {
+
+					options: {
+						style:     'expanded',
+						sourceMap: true,
+						noCache:   true
+					},
+
+					files: {
+						'assets/css/ufhealth-require-image-alt-tag.css': 'assets/css/scss/ufhealth-require-image-alt-tag.scss'
+					}
 				}
 			},
 
 			/**
 			 * Update translation file.
 			 */
-			makepot : {
+			makepot: {
 
-				target : {
-					options : {
-						type        : 'wp-plugin',
-						domainPath  : '/lang',
-						mainFile    : 'ufhealth-require-img-alt-tag.php',
-						potFilename : 'ufhealth-require-img-alt-tag.pot'
+				target: {
+					options: {
+						type:        'wp-plugin',
+						domainPath:  '/languages',
+						mainFile:    'ufhealth-require-image-alt-tag.php',
+						potFilename: 'ufhealth-require-image-alt-tag.pot'
 					}
 				}
 			},
 
-			/**
-			 * Make sure PHP unit tests have been completed
-			 */
-			phpunit : {
+			phpunit: {
 
-				classes : {
-					dir : 'tests/'
+				classes: {
+					dir: 'tests/'
 				},
 
-				options : {
+				options: {
 
-					bin        : './vendor/bin/phpunit',
-					testSuffix : 'Tests.php',
-					bootstrap  : 'bootstrap.php',
-					colors     : true
+					bin:        './vendor/bin/phpunit',
+					testSuffix: 'Tests.php',
+					bootstrap:  'bootstrap.php',
+					colors:     true
+
+				}
+			},
+
+			/**
+			 * Clean up the JavaScript
+			 */
+			jshint: {
+				options: {
+					jshintrc: true
+				},
+				all:     ['assets/js/src/ufhealth-require-image-alt-tag.js']
+			},
+
+			/**
+			 * Watch scripts and styles for changes
+			 */
+			watch: {
+
+				options: {
+					livereload: true
+				},
+
+				scripts: {
+
+					files: [
+						'assets/js/src/*'
+					],
+
+					tasks: ['uglify:production']
+
+				},
+
+				styles: {
+
+					files: [
+						'assets/css/scss/*'
+					],
+
+					tasks: ['sass', 'autoprefixer', 'cssmin']
 
 				}
 			}
@@ -99,8 +161,7 @@ module.exports = function ( grunt ) {
 	);
 
 	// A very basic default task.
-	grunt.registerTask( 'default', ['phpunit', 'jshint', 'uglify:production', 'makepot'] );
-	grunt.registerTask( 'production', ['uglify:production', 'makepot'] );
-	grunt.registerTask( 'dev', ['default', 'watch'] );
+	grunt.registerTask('default', ['phpunit', 'jshint', 'uglify:production', 'sass', 'autoprefixer', 'cssmin', 'makepot']);
+	grunt.registerTask('dev', ['default', 'watch']);
 
 };

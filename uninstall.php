@@ -1,83 +1,74 @@
 <?php
 /**
- * UFHealth Require Image Alt Tags Uninstaller
+ * Require Image Alt Tag uninstaller
  *
  * Used when clicking "Delete" from inside of WordPress's plugins page.
  *
- * @package ufhealth-require-img-alt-tag
+ * @package UFHealth\require_image_alt_tag
  *
  * @since   1.0
  *
  * @author  Chris Wiegman <cwiegman@ufl.edu>
  */
 
+namespace UFHealth\require_image_alt_tag\Uninstall;
+
 /**
- * Class UFHealth_Require_Image_Alt_Tag_Uninstaller
+ * Initialize uninstaller
+ *
+ * Perform some checks to make sure plugin can/should be uninstalled
+ *
+ * @since 1.0
  */
-class UFHealth_Require_Image_Alt_Tag_Uninstaller {
+function perform_uninstall() {
 
-	/**
-	 * Initialize uninstaller
-	 *
-	 * Perform some checks to make sure plugin can/should be uninstalled
-	 *
-	 * @since 2.0
-	 */
-	public function __construct() {
-
-		// Exit if accessed directly.
-		if ( ! defined( 'ABSPATH' ) ) {
-			$this->exit_uninstaller();
-		}
-
-		// Not uninstalling.
-		if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-			$this->exit_uninstaller();
-		}
-
-		// Not uninstalling.
-		if ( ! WP_UNINSTALL_PLUGIN ) {
-			$this->exit_uninstaller();
-		}
-
-		// Not uninstalling this plugin.
-		if ( dirname( WP_UNINSTALL_PLUGIN ) !== dirname( plugin_basename( __FILE__ ) ) ) {
-			$this->exit_uninstaller();
-		}
-
-		// Uninstall Bridge Profile Widget.
-		self::clean_data();
-
+	// Exit if accessed directly.
+	if ( ! defined( 'ABSPATH' ) ) {
+		exit_uninstaller();
 	}
 
-	/**
-	 * Cleanup options
-	 *
-	 * Deletes plugin options and other data.
-	 *
-	 * @since 1.0
-	 *
-	 * @return void
-	 */
-	protected static function clean_data() {
-
+	// Not uninstalling.
+	if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+		exit_uninstaller();
 	}
 
-	/**
-	 * Exit uninstaller
-	 *
-	 * Gracefully exit the uninstaller if we should not be here
-	 *
-	 * @since 1.0
-	 *
-	 * @return void
-	 */
-	protected function exit_uninstaller() {
-
-		status_header( 404 );
-		exit;
-
+	// Not uninstalling.
+	if ( ! WP_UNINSTALL_PLUGIN ) {
+		exit_uninstaller();
 	}
+
+	// Not uninstalling this plugin.
+	if ( dirname( WP_UNINSTALL_PLUGIN ) !== dirname( plugin_basename( __FILE__ ) ) ) {
+		exit_uninstaller();
+	}
+
+	// Uninstall Better YOURLs.
+	clean_data();
 }
 
-new UFHealth_Require_Image_Alt_Tag_Uninstaller();
+/**
+ * Cleanup options
+ *
+ * Deletes plugin options and post_meta.
+ *
+ * @since 1.0
+ */
+function clean_data() {
+
+}
+
+/**
+ * Exit uninstaller
+ *
+ * Gracefully exit the uninstaller if we should not be here
+ *
+ * @since 1.0
+ */
+function exit_uninstaller() {
+
+	status_header( 404 );
+	exit;
+
+}
+
+perform_uninstall();

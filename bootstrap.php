@@ -3,16 +3,12 @@ if ( ! defined( 'PROJECT' ) ) {
 	define( 'PROJECT', __DIR__ . '/includes/' );
 }
 
-if ( ! defined( 'UFHEALTH_REQUIRE_IMG_ALT_TAG_DIR' ) ) {
-	define( 'UFHEALTH_REQUIRE_IMG_ALT_TAG_DIR', __DIR__ . '/' );
-}
-
 // Place any additional bootstrapping requirements here for PHP Unit.
-if ( ! defined( 'WP_LANG_DIR' ) ) {
-	define( 'WP_LANG_DIR', 'lang_dir' );
+if ( ! defined( 'UFHEALTH_REQUIRE_IMAGE_ALT_TAG_DIR' ) ) {
+	define( 'UFHEALTH_REQUIRE_IMAGE_ALT_TAG_DIR', 'lang_dir' );
 }
-if ( ! defined( 'UFHEALTH_REQUIRE_IMG_ALT_TAG_PATH' ) ) {
-	define( 'UFHEALTH_REQUIRE_IMG_ALT_TAG_PATH', 'path' );
+if ( ! defined( 'UFHEALTH_REQUIRE_IMAGE_ALT_TAG_PATH' ) ) {
+	define( 'UFHEALTH_REQUIRE_IMAGE_ALT_TAG_PATH', 'path' );
 }
 
 if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
