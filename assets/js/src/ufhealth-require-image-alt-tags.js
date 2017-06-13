@@ -10,9 +10,9 @@ jQuery(document).ready(function ($) {
 
 	var checkForAlt = function (showNotice) {
 
-		var notice = ('undefined' !== typeof showNotice) ? showNotice : false;
-		var $altText   = $('.media-modal-content label[data-setting="alt"] input');
-		var $parent    = $('.media-frame-toolbar .media-toolbar-primary');
+		var notice   = ('undefined' !== typeof showNotice) ? showNotice : false;
+		var $altText = $('.media-modal-content label[data-setting="alt"] input');
+		var $parent  = $('.media-frame-toolbar .media-toolbar-primary');
 
 		if (!$altText.length) {
 			// No image selected in the first place; bail out.
@@ -31,13 +31,20 @@ jQuery(document).ready(function ($) {
 		}
 	};
 
+	var body = $('body');
+
+	// Bind to change.
+	body.on('DOMSubtreeModified', '.selection-view ul.attachments', function () {
+		console.log(wp.media);
+	});
+
 	// Bind to keyup.
-	$('body').on('keyup', '.media-modal-content label[data-setting="alt"] input', function () {
+	body.on('keyup', '.media-modal-content label[data-setting="alt"] input', function () {
 		checkForAlt();
 	});
 
-	// Bind to the 'Inesert into post' button.
-	$('body').on('mouseenter mouseleave click', '.media-frame-toolbar .media-toolbar-primary', function (e) {
+	// Bind to the 'Insert into post' button.
+	body.on('mouseenter mouseleave click', '.media-frame-toolbar .media-toolbar-primary', function (e) {
 		checkForAlt(e.type === 'click');
 	});
 });
