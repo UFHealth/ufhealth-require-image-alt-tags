@@ -26,4 +26,6 @@ function ufhealth_require_image_alt_tags_loader() {
 	// Remember the text domain.
 	load_plugin_textdomain( 'ufhealth-require-image-alt-tags', false, dirname( dirname( __FILE__ ) ) . '/languages' );
 
+	require( dirname( __FILE__ ) . '/includes/require-alt-tags.php' );
+
 }
