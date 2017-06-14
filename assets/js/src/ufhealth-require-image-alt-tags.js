@@ -33,11 +33,6 @@ jQuery(document).ready(function ($) {
 
 	var body = $('body');
 
-	// Bind to change.
-	body.on('DOMSubtreeModified', '.selection-view ul.attachments', function () {
-		console.log(wp.media);
-	});
-
 	// Bind to keyup.
 	body.on('keyup', '.media-modal-content label[data-setting="alt"] input', function () {
 		checkForAlt();
