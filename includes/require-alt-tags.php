@@ -18,7 +18,21 @@ add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\action_admin_enqueue_scri
  */
 function action_admin_enqueue_scripts() {
 
-	if ( 'post' === get_current_screen()->id ) {
+	$site_id = is_multisite() ? get_current_blog_id() : 0;
+
+	/**
+	 * Filter the screen IDs in where the script should be displayed
+	 *
+	 * This filter allows us to limit or expand to multiple content types or other screens based on the the current site.
+	 *
+	 * @since 1.0
+	 *
+	 * @param array $screens Array of screen IDs (post, page, etc).
+	 * @param int   $site_id The current site ID.
+	 */
+	$screens = apply_filters( 'ufh_replace_alt_tags_screen_ids', array( 'post', 'page' ), $site_id );
+
+	if ( in_array( get_current_screen()->id, $screens, true ) ) {
 
 		$min = '.min';
 		$src = '';
