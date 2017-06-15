@@ -54,7 +54,8 @@ function action_admin_enqueue_scripts() {
 			'ufhealth_require_alt_tags',
 			'ufhTagsCopy',
 			array(
-				'txt' => 'The following image(s) are missing alt text',
+				'txt'     => 'The following image(s) are missing alt text',
+				'editTxt' => 'You must enter alt text to the image',
 			)
 		);
 
