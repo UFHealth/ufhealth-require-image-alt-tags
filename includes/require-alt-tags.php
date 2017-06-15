@@ -36,5 +36,13 @@ function action_admin_enqueue_scripts() {
 		wp_enqueue_script( 'ufhealth_require_alt_tags' );
 		wp_enqueue_style( 'ufhealth_require_alt_tags' );
 
+		wp_localize_script(
+			'ufhealth_require_alt_tags',
+			'ufhTagsCopy',
+			array(
+				'txt' => 'The following image(s) are missing alt text',
+			)
+		);
+
 	}
 }

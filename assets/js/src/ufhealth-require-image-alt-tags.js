@@ -54,7 +54,7 @@ jQuery(document).ready(function ($) {
 					imageList = imageList + badImages[i] + '\n\n';
 				}
 
-				alert('The following image(s) are missing alt text: ' + imageList);
+				alert(ufhTagsCopy.txt + ':' + imageList);
 			}
 
 			return false;
