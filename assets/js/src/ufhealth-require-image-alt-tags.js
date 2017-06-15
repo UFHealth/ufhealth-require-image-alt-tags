@@ -23,8 +23,6 @@ jQuery(document).ready(function ($) {
 			    image   = wp.media.model.Attachment.get(imageId),
 			    altText = image.get('alt');
 
-			console.log(altText);
-
 			if (altText.length) {
 
 				$parent.addClass('ufh-has-alt-text');
