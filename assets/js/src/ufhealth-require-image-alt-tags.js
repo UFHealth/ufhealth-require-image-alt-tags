@@ -51,10 +51,10 @@ jQuery(document).ready(function ($) {
 				var imageList = '\n\n';
 
 				for (var i = 0, l = badImages.length; i < l; i++) {
-					imageList = imageList + badImages[i];
+					imageList = imageList + badImages[i] + '\n\n';
 				}
 
-				alert('The following images are missing alt text: ' + imageList + '\n');
+				alert('The following image(s) are missing alt text: ' + imageList);
 			}
 
 			return false;
