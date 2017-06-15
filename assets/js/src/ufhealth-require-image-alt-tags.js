@@ -54,7 +54,7 @@ jQuery(document).ready(function ($) {
 					imageList = imageList + badImages[i];
 				}
 
-				alert('The following images are missing alt text: ' + imageList);
+				alert('The following images are missing alt text: ' + imageList + "\n");
 			}
 
 			return false;
