@@ -54,8 +54,9 @@ function action_admin_enqueue_scripts() {
 			'ufhealth_require_alt_tags',
 			'ufhTagsCopy',
 			array(
-				'txt'     => 'The following image(s) are missing alt text',
-				'editTxt' => 'You must enter alt text to the image',
+				'txt'        => 'The following image(s) are missing alt text',
+				'editTxt'    => 'You must enter alt text to the image',
+				'disclaimer' => 'Please include an ‘Alt Text’ before proceeding with inserting your image. Due to Federal and State laws, and University accessibility standards, all inserted images must include a description of what the image contains. Thank you.',
 			)
 		);
 
