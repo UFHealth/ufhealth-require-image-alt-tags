@@ -72,7 +72,7 @@ jQuery(document).ready(function ($) {
 						imageList = imageList + badImages[i] + '\n\n';
 					}
 
-					alert(ufhTagsCopy.txt + ':' + imageList);
+					alert(ufhTagsCopy.disclaimer + '\n\n' + ufhTagsCopy.txt + ':' + imageList);
 				}
 
 				return false;
