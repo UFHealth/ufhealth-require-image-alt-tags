@@ -84,3 +84,20 @@ function filter_manage_media_columns( $columns ) {
 
 }
 
+add_action( 'manage_media_custom_column', __NAMESPACE__ . '\action_manage_media_custom_column', 10, 3 );
+
+/**
+ * Filter manage_users_custom_column
+ *
+ * Filters the display output of custom columns in the Users list table.
+ *
+ * @since 1.0
+ *
+ * @param string $column_name Name of the custom column.
+ * @param int    $post_id     Attachment ID.
+ */
+function action_manage_media_custom_column( $column_name, $post_id ) {
+
+
+
+}
