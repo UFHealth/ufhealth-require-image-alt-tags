@@ -5,5 +5,9 @@ Forces users to add an ALT tag when adding images to WordPress posts and more.
 
 ## Changelog
 
+##### 1.1
+* Make all test i18n compatible
+* Add "Alt Text" column to media table to easily find missing alt tags.
+
 ##### 1.0
 * Initial Release

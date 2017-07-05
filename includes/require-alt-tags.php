@@ -2,7 +2,7 @@
 /**
  * Add plugin functionality for requiring alt tags.
  *
- * @since 1.0
+ * @since   1.0
  *
  * @package UFHealth\require_image_alt_tags
  */
@@ -54,11 +54,56 @@ function action_admin_enqueue_scripts() {
 			'ufhealth_require_alt_tags',
 			'ufhTagsCopy',
 			array(
-				'txt'        => 'The following image(s) are missing alt text',
-				'editTxt'    => 'You must enter alt text to the image',
-				'disclaimer' => 'Please include an ‘Alt Text’ before proceeding with inserting your image. Due to Federal and State laws, and University accessibility standards, all inserted images must include a description of what the image contains. Thank you.',
+				'txt'        => esc_html__( 'The following image(s) are missing alt text', 'ufhealth-require-image-alt-tags' ),
+				'editTxt'    => esc_html__( 'You must enter alt text to the image', 'ufhealth-require-image-alt-tags' ),
+				'disclaimer' => esc_html__( 'Please include an ‘Alt Text’ before proceeding with inserting your image. Due to Federal and State laws, and University accessibility standards, all inserted images must include a description of what the image contains. Thank you.', 'ufhealth-require-image-alt-tags' ),
 			)
 		);
 
+	}
+}
+
+add_filter( 'manage_media_columns', __NAMESPACE__ . '\filter_manage_media_columns' );
+
+/**
+ * Filter manage_media_columns
+ *
+ * Adds a column to the media table to show images missing ALT text.
+ *
+ * @since 1.1
+ *
+ * @param array $columns Array of media table columns.
+ *
+ * @return array Filtered array of media table columns
+ */
+function filter_manage_media_columns( $columns ) {
+
+	$columns['alttext'] = esc_html__( 'Alt Text', 'ufhealth-require-image-alt-tags' );
+
+	return $columns;
+
+}
+
+add_action( 'manage_media_custom_column', __NAMESPACE__ . '\action_manage_media_custom_column', 10, 3 );
+
+/**
+ * Filter manage_users_custom_column
+ *
+ * Filters the display output of custom columns in the Users list table.
+ *
+ * @since 1.0
+ *
+ * @param string $column_name Name of the custom column.
+ * @param int    $post_id     Attachment ID.
+ */
+function action_manage_media_custom_column( $column_name, $post_id ) {
+
+	if ( 'alttext' === $column_name && wp_attachment_is_image( $post_id ) ) {
+
+		$alt_text = get_post_meta( $post_id, '_wp_attachment_image_alt', true );
+
+		if ( empty( $alt_text ) ) {
+			printf( '<span style="color: red;">%s</span>', esc_html__( 'Missing', 'ufhealth-require-image-alt-tags' ) );
+		}
 	}
 }
