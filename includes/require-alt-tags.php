@@ -2,7 +2,7 @@
 /**
  * Add plugin functionality for requiring alt tags.
  *
- * @since 1.0
+ * @since   1.0
  *
  * @package UFHealth\require_image_alt_tags
  */
