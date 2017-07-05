@@ -62,3 +62,25 @@ function action_admin_enqueue_scripts() {
 
 	}
 }
+
+add_filter( 'manage_media_columns', __NAMESPACE__ . '\filter_manage_media_columns' );
+
+/**
+ * Filter manage_media_columns
+ *
+ * Adds a column to the media table to show images missing ALT text.
+ *
+ * @since 1.1
+ *
+ * @param array $columns Array of media table columns.
+ *
+ * @return array Filtered array of media table columns
+ */
+function filter_manage_media_columns( $columns ) {
+
+	$columns['alttext'] = esc_html__( 'Alt Text', 'ufhealth-require-image-alt-tags' );
+
+	return $columns;
+
+}
+
