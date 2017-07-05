@@ -98,6 +98,12 @@ add_action( 'manage_media_custom_column', __NAMESPACE__ . '\action_manage_media_
  */
 function action_manage_media_custom_column( $column_name, $post_id ) {
 
+	if ( 'alttext' === $column_name && wp_attachment_is_image( $post_id ) ) {
 
+		$alt_text = get_post_meta( $post_id, '_wp_attachment_image_alt', true );
 
+		if ( empty( $alt_text ) ) {
+			printf( '<span style="color: red;">%s</span>', esc_html__( 'Missing', 'ufhealth-require-image-alt-tags' ) );
+		}
+	}
 }
