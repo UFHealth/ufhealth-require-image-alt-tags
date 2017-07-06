@@ -8,6 +8,15 @@
 jQuery(document).ready(function ($) {
 	'use strict';
 
+	/**
+	 * Checks the media form for proper ALT text
+	 *
+	 * @since 1.0
+	 *
+	 * @param showNotice
+	 *
+	 * @returns {boolean}
+	 */
 	var checkForAlt = function (showNotice) {
 
 		var notice         = ('undefined' !== typeof showNotice) ? showNotice : false,
@@ -21,14 +30,16 @@ jQuery(document).ready(function ($) {
 			var $image = $('.attachment-details').attr('data-id'),
 			    altText;
 
+			// Handle image uploads if there is a multi-select box (normal image insertion.
 			if ('undefined' !== typeof $image) {
 
 				var image = wp.media.model.Attachment.get($image);
 
 				altText = image.get('alt');
 
-			} else {
+			} else { // Handle featured image, replace image, etc.
 
+				// Different forms have different markup so attempt to address accordingly.
 				var hasLabel = $('.media-modal-content label[data-setting="alt"] input'),
 				    noLabel  = $('.media-frame-content input[data-setting="alt"]');
 
@@ -39,6 +50,7 @@ jQuery(document).ready(function ($) {
 				} else {
 
 					altText = noLabel.val();
+
 				}
 			}
 
@@ -50,6 +62,7 @@ jQuery(document).ready(function ($) {
 
 			}
 
+			// Remove the mask that allows the button to be pushed.
 			$parent.removeClass('ufh-has-alt-text');
 
 			if (notice) {
@@ -81,7 +94,6 @@ jQuery(document).ready(function ($) {
 					canProceed = false;
 
 				}
-
 			});
 
 			if (false === canProceed) {
@@ -97,6 +109,7 @@ jQuery(document).ready(function ($) {
 					}
 
 					alert(ufhTagsCopy.disclaimer + '\n\n' + ufhTagsCopy.txt + ':' + imageList);
+
 				}
 
 				return false;
@@ -119,4 +132,5 @@ jQuery(document).ready(function ($) {
 	body.on('mouseenter mouseleave click', '.media-frame-toolbar .media-toolbar-primary', function (e) {
 		checkForAlt(e.type === 'click');
 	});
+
 });
