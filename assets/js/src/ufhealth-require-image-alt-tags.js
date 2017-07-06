@@ -27,7 +27,10 @@ jQuery(document).ready(function ($) {
 
 			} else {
 
-				altText = $('.media-frame-content label[data-setting="alt"] input').val();
+				var $image = $('.attachment-details').attr('data-id'),
+				    image  = wp.media.model.Attachment.get($image);
+
+				altText = image.get('alt');
 
 			}
 
