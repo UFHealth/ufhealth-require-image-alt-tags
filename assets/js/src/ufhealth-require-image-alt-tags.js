@@ -8,6 +8,15 @@
 jQuery(document).ready(function ($) {
 	'use strict';
 
+	/**
+	 * Checks the media form for proper ALT text
+	 *
+	 * @since 1.0
+	 *
+	 * @param showNotice
+	 *
+	 * @returns {boolean}
+	 */
 	var checkForAlt = function (showNotice) {
 
 		var notice         = ('undefined' !== typeof showNotice) ? showNotice : false,
@@ -18,15 +27,43 @@ jQuery(document).ready(function ($) {
 
 		if (0 === selectedImages.length) {
 
-			var altText = $('.media-frame-content input[data-setting="alt"]').val();
+			var $image = $('.attachment-details').attr('data-id'),
+			    altText;
 
-			if (altText.length) {
+			// Handle image uploads if there is a multi-select box (normal image insertion.
+			if ('undefined' !== typeof $image) {
+
+				var image = wp.media.model.Attachment.get($image);
+
+				altText = image.get('alt');
+
+			} else { // Handle featured image, replace image, etc.
+
+				// Different forms have different markup so attempt to address accordingly.
+				var hasLabel = $('.media-modal-content label[data-setting="alt"] input'),
+				    noLabel  = $('.media-frame-content input[data-setting="alt"]');
+
+				if (hasLabel.length && 0 < hasLabel.length) {
+
+					altText = hasLabel.val();
+
+				} else {
+
+					altText = noLabel.val();
+
+				}
+			}
+
+			if (altText.length && 0 < altText.length) {
 
 				$parent.addClass('ufh-has-alt-text');
 
 				return true;
 
 			}
+
+			// Remove the mask that allows the button to be pushed.
+			$parent.removeClass('ufh-has-alt-text');
 
 			if (notice) {
 				alert(ufhTagsCopy.editTxt);
@@ -57,7 +94,6 @@ jQuery(document).ready(function ($) {
 					canProceed = false;
 
 				}
-
 			});
 
 			if (false === canProceed) {
@@ -73,6 +109,7 @@ jQuery(document).ready(function ($) {
 					}
 
 					alert(ufhTagsCopy.disclaimer + '\n\n' + ufhTagsCopy.txt + ':' + imageList);
+
 				}
 
 				return false;
@@ -95,4 +132,5 @@ jQuery(document).ready(function ($) {
 	body.on('mouseenter mouseleave click', '.media-frame-toolbar .media-toolbar-primary', function (e) {
 		checkForAlt(e.type === 'click');
 	});
+
 });
