@@ -10,11 +10,12 @@ jQuery(document).ready(function ($) {
 
 	var checkForAlt = function (showNotice) {
 
-		var notice         = ('undefined' !== typeof showNotice) ? showNotice : false,
-		    $parent        = $('.media-frame-toolbar .media-toolbar-primary'),
-		    selectedImages = $('.selection-view ul.attachments li'),
-		    canProceed     = true,
-		    badImages      = [];
+		var notice           = ('undefined' !== typeof showNotice) ? showNotice : false,
+		    $parent          = $('.media-frame-toolbar .media-toolbar-primary'),
+		    secondaryToolbar = $('.media-frame-toolbar .media-toolbar-secondary').children().length,
+		    selectedImages   = $('.selection-view ul.attachments li'),
+		    canProceed       = true,
+		    badImages        = [];
 
 		if (0 === selectedImages.length) {
 
