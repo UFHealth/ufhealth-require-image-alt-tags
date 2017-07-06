@@ -19,9 +19,19 @@ jQuery(document).ready(function ($) {
 
 		if (0 === selectedImages.length) {
 
-			var altText = $('.media-frame-content input[data-setting="alt"]').val();
+			var altText;
 
-			if (altText.length) {
+			if (0 < secondaryToolbar) {
+
+				altText = $('.media-frame-content input[data-setting="alt"]').val();
+
+			} else {
+
+				altText = $('.media-frame-content label[data-setting="alt"] input').val();
+
+			}
+
+			if (altText.length && 0 < altText.length) {
 
 				$parent.addClass('ufh-has-alt-text');
 
