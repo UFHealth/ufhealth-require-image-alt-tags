@@ -10,28 +10,36 @@ jQuery(document).ready(function ($) {
 
 	var checkForAlt = function (showNotice) {
 
-		var notice           = ('undefined' !== typeof showNotice) ? showNotice : false,
-		    $parent          = $('.media-frame-toolbar .media-toolbar-primary'),
-		    secondaryToolbar = $('.media-frame-toolbar .media-toolbar-secondary').children().length,
-		    selectedImages   = $('.selection-view ul.attachments li'),
-		    canProceed       = true,
-		    badImages        = [];
+		var notice         = ('undefined' !== typeof showNotice) ? showNotice : false,
+		    $parent        = $('.media-frame-toolbar .media-toolbar-primary'),
+		    selectedImages = $('.selection-view ul.attachments li'),
+		    canProceed     = true,
+		    badImages      = [];
 
 		if (0 === selectedImages.length) {
 
-			var altText;
+			var $image = $('.attachment-details').attr('data-id'),
+			    altText;
 
-			if (0 < secondaryToolbar) {
+			if ('undefined' !== typeof $image) {
 
-				altText = $('.media-frame-content input[data-setting="alt"]').val();
-
-			} else {
-
-				var $image = $('.attachment-details').attr('data-id'),
-				    image  = wp.media.model.Attachment.get($image);
+				var image = wp.media.model.Attachment.get($image);
 
 				altText = image.get('alt');
 
+			} else {
+
+				var hasLabel = $('.media-modal-content label[data-setting="alt"] input'),
+				    noLabel  = $('.media-frame-content input[data-setting="alt"]');
+
+				if (hasLabel.length && 0 < hasLabel.length) {
+
+					altText = hasLabel.val();
+
+				} else {
+
+					altText = noLabel.val();
+				}
 			}
 
 			if (altText.length && 0 < altText.length) {
