@@ -42,6 +42,8 @@ jQuery(document).ready(function ($) {
 
 			}
 
+			$parent.removeClass('ufh-has-alt-text');
+
 			if (notice) {
 				alert(ufhTagsCopy.editTxt);
 			}
