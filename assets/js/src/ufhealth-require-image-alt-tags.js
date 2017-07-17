@@ -80,7 +80,7 @@ jQuery(document).ready(function ($) {
 				    image   = wp.media.model.Attachment.get(imageId),
 				    altText = image.get('alt');
 
-				if (altText.length) {
+				if (altText.length || 'image' !== image.get('type')) {
 
 					$parent.addClass('ufh-has-alt-text');
 					$image.removeClass('ufh-needs-alt-text');
