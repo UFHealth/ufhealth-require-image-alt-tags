@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: UF Health Require Image Alt Tags
- * Plugin URI: https://ufhealth.org/
+ * Plugin URI: http://webservices.ufhealth.org
  * Description: Forces users to add an ALT tag when adding images to WordPress posts and more.
  * Version: 1.1.2
  * Text Domain: ufhealth-require-image-alt-tags
- * Domain Path: /lang
- * Author: Chris Wiegman
- * Author URI: https://ufhealth.org/
+ * Domain Path: /languages
+ * Author: UF Health
+ * Author URI: http://webservices.ufhealth.org
  * License: GPLv2
  *
  * @package UFHealth\require_image_alt_tags
