@@ -3,6 +3,7 @@ Contributors: ufhealth, ChrisWiegman
 Donate link: http://giving.ufhealth.org/ways-to-give/give-now/
 Tags: a11y, alt tag, accessibility
 Requires at least: 4.2
+Requires PHP: 5.6
 Tested up to: 4.8.1
 Stable tag: 1.1.3
 License: GPLv2 or later
@@ -16,6 +17,8 @@ Released under the terms of the GNU General Public License.
 == Description ==
 
 Forces users to add an ALT tag when adding images to WordPress posts and more.
+
+= Screenshots =
 
 = Features =
 
