@@ -21,9 +21,13 @@ jQuery(document).ready(function ($) {
 
 		var notice         = ('undefined' !== typeof showNotice) ? showNotice : false,
 		    $parent        = $('.media-frame-toolbar .media-toolbar-primary'),
-		    selectedImages = $('ul.attachments li[aria-checked="true"]'),
+		    selectedImages = $('.media-frame-content ul.attachments li[aria-checked="true"]'),
 		    canProceed     = true,
 		    badImages      = [];
+
+		$('.ufh-needs-alt-text').each(function (idx, li) {
+			$(li).removeClass('ufh-needs-alt-text');
+		});
 
 		if (0 === selectedImages.length) {
 
@@ -54,7 +58,7 @@ jQuery(document).ready(function ($) {
 				}
 			}
 
-			if (altText.length && 0 < altText.length) {
+			if (0 === $('.media-sidebar.visible').length || ( altText.length && 0 < altText.length )) {
 
 				$parent.addClass('ufh-has-alt-text');
 
