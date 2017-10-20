@@ -30,7 +30,7 @@ jQuery(document).ready(function ($) {
 			var $image = $('.attachment-details').attr('data-id'),
 			    altText;
 
-			// Handle image uploads if there is a multi-select box (normal image insertion.
+			// Handle image uploads if there is a multi-select box (normal image insertion).
 			if ('undefined' !== typeof $image) {
 
 				var image = wp.media.model.Attachment.get($image);
