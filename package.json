@@ -17,6 +17,6 @@
 	"author": "Chris Wiegman",
 	"repository": {
 		"type": "git",
-		"url": "https://gitlab.ahc.ufl.edu/WebServices/WordPress-Plugins/ufhealth-require-image-alt-tags"
+		"url": "https://github.com/UFHealth/ufhealth-require-image-alt-tags"
 	}
 }
