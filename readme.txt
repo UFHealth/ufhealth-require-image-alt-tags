@@ -25,9 +25,10 @@ Forces users to add an ALT tag when adding images to WordPress posts and more.
 * Multisite compatible
 * Handle single or multiple image uploads
 
-= Translations =
+== Frequently Asked Questions ==
 
-* English
+= Can I change the disclaimer copy shown in the warning box? =
+* Yes. Use the `ufhealth_alt_tag_disclaimer` filter to edit the copy.
 
 == Installation ==
 
@@ -35,8 +36,12 @@ Forces users to add an ALT tag when adding images to WordPress posts and more.
 2. Upload the zip file to the `/wp-content/plugins/` directory
 3. Unzip
 4. Activate the plugin through the 'Plugins' menu in WordPress
+5. All images will now require alt text. There are no settings to worry about. To disable the feature simply disable the plugin.
 
 == Changelog ==
+
+= 1.1.3 =
+* Add ufhealth_alt_tag_disclaimer filter to edit copy
 
 = 1.1.2 =
 * Check for image as media type for standard insertion box to allow other file times to be added.
