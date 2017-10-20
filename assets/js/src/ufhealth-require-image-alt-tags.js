@@ -21,7 +21,7 @@ jQuery(document).ready(function ($) {
 
 		var notice         = ('undefined' !== typeof showNotice) ? showNotice : false,
 		    $parent        = $('.media-frame-toolbar .media-toolbar-primary'),
-		    selectedImages = $('.selection-view ul.attachments li'),
+		    selectedImages = $('ul.attachments li[aria-checked="true"]'),
 		    canProceed     = true,
 		    badImages      = [];
 
@@ -80,19 +80,22 @@ jQuery(document).ready(function ($) {
 				    image   = wp.media.model.Attachment.get(imageId),
 				    altText = image.get('alt');
 
-				if (altText.length || 'image' !== image.get('type')) {
+				if ('undefined' !== typeof imageId) {
 
-					$parent.addClass('ufh-has-alt-text');
-					$image.removeClass('ufh-needs-alt-text');
+					if (altText.length || 'image' !== image.get('type')) {
 
-				} else {
+						$parent.addClass('ufh-has-alt-text');
+						$image.removeClass('ufh-needs-alt-text');
 
-					$image.addClass('ufh-needs-alt-text');
+					} else {
 
-					badImages.push(image.get('title'));
+						$image.addClass('ufh-needs-alt-text');
 
-					canProceed = false;
+						badImages.push(image.get('title'));
 
+						canProceed = false;
+
+					}
 				}
 			});
 
