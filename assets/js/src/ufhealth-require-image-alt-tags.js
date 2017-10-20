@@ -25,11 +25,12 @@ jQuery(document).ready(function ($) {
 		    canProceed     = true,
 		    badImages      = [];
 
+		// Clear all the marked ones first.
 		$('.ufh-needs-alt-text').each(function (idx, li) {
 			$(li).removeClass('ufh-needs-alt-text');
 		});
 
-		if (0 === selectedImages.length) {
+		if (0 === selectedImages.length) { // This is seen in some modals.
 
 			var $image = $('.attachment-details').attr('data-id'),
 			    altText;
@@ -58,6 +59,7 @@ jQuery(document).ready(function ($) {
 				}
 			}
 
+			// If we don't have an alt text field or don't even have a media form we're OK.
 			if (0 === $('.media-sidebar.visible').length || ( altText.length && 0 < altText.length )) {
 
 				$parent.addClass('ufh-has-alt-text');
@@ -75,7 +77,7 @@ jQuery(document).ready(function ($) {
 
 			return false;
 
-		} else {
+		} else { // We've selected one or more in a normal box.
 
 			selectedImages.each(function (idx, li) {
 
@@ -84,14 +86,14 @@ jQuery(document).ready(function ($) {
 				    image   = wp.media.model.Attachment.get(imageId),
 				    altText = image.get('alt');
 
-				if ('undefined' !== typeof imageId) {
+				if ('undefined' !== typeof imageId) { // It's not actually an image or even an uploaded item.
 
-					if (altText.length || 'image' !== image.get('type')) {
+					if (altText.length || 'image' !== image.get('type')) { //looks like we're OK on this one.
 
 						$parent.addClass('ufh-has-alt-text');
 						$image.removeClass('ufh-needs-alt-text');
 
-					} else {
+					} else { // Mark it 0 dude.
 
 						$image.addClass('ufh-needs-alt-text');
 
