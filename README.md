@@ -9,6 +9,9 @@ Use the `ufhealth_alt_tag_disclaimer` filter to edit the copy.
 
 ## Changelog
 
+##### 1.1.4
+* Fixed bugs leading to false positives or a stuck modal in certain situations.
+
 ##### 1.1.3
 * Add ufhealth_alt_tag_disclaimer filter to edit copy
 
