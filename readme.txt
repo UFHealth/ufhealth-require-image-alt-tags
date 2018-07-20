@@ -40,6 +40,9 @@ Forces users to add an ALT tag when adding images to WordPress posts and more.
 
 == Changelog ==
 
+= 1.2 =
+* Updated plugin for newer coding standards, easier docker development and more.
+
 = 1.1.5 =
 * Minor fixes for WordPress 4.9 compatibility
 

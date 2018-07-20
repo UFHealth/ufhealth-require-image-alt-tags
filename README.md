@@ -65,6 +65,9 @@ Use the `ufhealth_alt_tag_disclaimer` filter to edit the copy.
 
 ## Changelog
 
+##### 1.2
+* Updated plugin for newer coding standards, easier docker development and more.
+
 ##### 1.1.4
 * Fixed bugs leading to false positives or a stuck modal in certain situations.
 
