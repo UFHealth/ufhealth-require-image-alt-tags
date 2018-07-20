@@ -1,6 +1,8 @@
 UF Health Require Image Alt Tags
 =============
 
+[![pipeline status](https://gitlab.ahc.ufl.edu/WebServices/WordPress-Plugins/ufhealth-require-image-alt-tags/badges/master/pipeline.svg)](https://gitlab.ahc.ufl.edu/WebServices/WordPress-Plugins/ufhealth-require-image-alt-tags/commits/master) [![coverage report](https://gitlab.ahc.ufl.edu/WebServices/WordPress-Plugins/ufhealth-require-image-alt-tags/badges/master/coverage.svg)](https://gitlab.ahc.ufl.edu/WebServices/WordPress-Plugins/ufhealth-require-image-alt-tags/commits/master)
+
 Forces users to add an ALT tag when adding images to WordPress posts and more.
 
 ## Installation and Usage
