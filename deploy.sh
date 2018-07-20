@@ -54,6 +54,7 @@ echo "Ignoring github specific files and deployment script"
 svn propset svn:ignore "
 .git
 .idea
+Docker
 node_modules
 tests
 vendor
@@ -64,6 +65,8 @@ bootstrap.php
 composer.json
 composer.lock
 deploy.sh
+develop
+docker-compose.yml
 Gruntfile.js
 package.json
 package-lock.json
