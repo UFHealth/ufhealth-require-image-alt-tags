@@ -1,10 +1,18 @@
 variables:
+  MYSQL_DATABASE: wordpress_tests
+  MYSQL_ROOT_PASSWORD: mysql
+  WP_VERSION: latest
+  WP_MULTISITE: "0"
   GIT_SSL_NO_VERIFY: 'true'
 
+services:
+# We need MySQL to run our unit tests
+- mysql:5.7
+
 before_script:
-# Install git, the php image doesn't have installed
+# Install git, and php libraries the php image doesn't have installed
 - apt-get update -yqq
-- apt-get install git libxml2-dev unzip -yqq
+- apt-get install git wget gnupg -yqq
 # Install composer
 - curl -sS https://getcomposer.org/installer | php
 
@@ -12,22 +20,40 @@ stages:
   - build
   - test
 
+# Let's get assets, language files and compoaser and node builds
 build_assets:
   stage: build
-  image: php:7.1
+  image: php:7.2
   script:
     - php composer.phar install
+    - curl -sL https://deb.nodesource.com/setup_8.x | bash -
+    - apt-get install nodejs -yqq
+    - npm -g install grunt grunt-cli
+    - npm install
+    - grunt
   artifacts:
     expire_in: 1 day
     paths:
       - vendor/
+      - languages/
   cache:
       paths:
+        - node_modules/
         - vendor/
 
-# Test PHP 7.1
-test:7.1:
+# Test PHP 7.2
+test:7.2:
   stage: test
-  image: php:7.1
+  image: php:7.2
   script:
-  - vendor/bin/phpunit --configuration phpunit.xml
+    # Install required packages
+    - apt-get install libxml2-dev unzip zip unzip subversion mysql-client libmcrypt-dev --fix-missing -yqq
+    # Install PHP libs
+    - docker-php-ext-install mysqli pdo_mysql mbstring
+    - docker-php-ext-enable mysqli pdo_mysql mbstring
+    # Install Xdebug
+    - pecl install xdebug
+    - docker-php-ext-enable xdebug
+    # Install and run unit tests
+    - bash tests/bin/install-wp-tests.sh wordpress_test root mysql mysql $WP_VERSION
+    - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover --colors=never
