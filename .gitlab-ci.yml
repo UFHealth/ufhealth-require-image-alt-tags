@@ -28,7 +28,7 @@ build_assets:
     - php composer.phar install
     - curl -sL https://deb.nodesource.com/setup_8.x | bash -
     - apt-get install nodejs -yqq
-    - npm -g install grunt grunt-cli
+    - npm -g install grunt grunt-cli unzip
     - npm install
     - grunt
   artifacts:
