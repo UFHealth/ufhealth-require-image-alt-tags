@@ -79,7 +79,9 @@ jQuery(document).ready(function($) {
       $parent.removeClass('ufh-has-alt-text');
 
       if (notice) {
+        /* jshint ignore:start */
         alert(ufhTagsCopy.editTxt);
+        /* jshint ignore:end */
       }
 
       return false;
@@ -125,9 +127,9 @@ jQuery(document).ready(function($) {
           for (var i = 0, l = badImages.length; i < l; i++) {
             imageList = imageList + badImages[i] + '\n\n';
           }
-
-          alert(ufhTagsCopy.disclaimer + '\n\n' + ufhTagsCopy.txt + ':' +
-              imageList);
+          /* jshint ignore:start */
+          alert(ufhTagsCopy.disclaimer + '\n\n' + ufhTagsCopy.txt + ':' + imageList);
+          /* jshint ignore:end */
 
         }
 
