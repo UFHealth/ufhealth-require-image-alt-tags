@@ -1,0 +1,57 @@
+version: '3'
+
+networks:
+  default:
+    driver: bridge
+  ouroboros_default:
+    external: true
+
+services:
+  mariadb:
+    image: mariadb
+    volumes:
+      - "./Docker/database:/var/lib/mysql"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: username
+      MYSQL_PASSWORD: password
+    networks:
+      - default
+    labels:
+      - 'traefik.enable=false'
+  phpfpm:
+    image: ufhweb/php:7.2-wordpress
+    depends_on:
+      - mariadb
+    volumes:
+      - "./Docker/wordpress:/var/www/html"
+      - "./:/var/www/html/wp-content/plugins/ufhealth-require-image-alt-tags"
+      - "./Docker/debug:/data/debug"
+      - "./Docker/logs/php:/var/log/php-fpm"
+    restart: always
+    networks:
+      - default
+      - ouroboros_default
+    labels:
+      - 'traefik.enable=false'
+    environment:
+      XDEBUG_HOST: ${XDEBUG_HOST}
+  httpd:
+    depends_on:
+      - phpfpm
+    image: ufhweb/apache:2.4
+    volumes:
+      - "./Docker/wordpress:/var/www/html"
+      - "./:/var/www/html/wp-content/plugins/ufhealth-require-image-alt-tags"
+      - "./Docker/logs/httpd:/var/log/apache2"
+    restart: always
+    networks:
+      - default
+      - ouroboros_default
+    labels:
+      - 'traefik.frontend.rule=Host:ufhealth-require-image-alt-tags.test'
+      - 'traefik.domain=ufhealth-require-image-alt-tags.test'
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=ouroboros_default'
