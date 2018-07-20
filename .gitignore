@@ -48,6 +48,7 @@ GitHub.sublime-settings
 
 .metadata
 bin/
+!tests/bin/
 tmp/
 *.tmp
 *.bak
@@ -199,3 +200,14 @@ languages/*.pot
 assets/css/*.css
 assets/css/*.map
 assets/js/*.js
+assets/js/*.map
+
+# Docker files
+Docker/database
+Docker/wordpress
+Docker/logs
+Docker/debug
+!Docker/bin
+
+# Leftovers
+.yo-rc.json

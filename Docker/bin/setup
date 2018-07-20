@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Set environment variables for dev
+if [ "Darwin" == $(uname -s) ]; then
+    export XDEBUG_HOST=$(ipconfig getifaddr en0)
+else
+    export XDEBUG_HOST=$(ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+fi
+
+if [ -f "./wordpress/wp-config.php" ];
+then
+	echo "WordPress config file found."
+else
+	echo "WordPress config file not found. Installing..."
+	export XDEBUG_HOST=$(ipconfig getifaddr en0) # Specific to Macintosh
+	docker-compose exec --user www-data phpfpm wp core download
+	docker-compose exec --user www-data phpfpm wp core config --dbhost=mariadb --dbname=wordpress --dbuser=root --dbpass=password
+        docker-compose exec --user www-data phpfpm wp core install --url=ufhealth-require-image-alt-tags.test --title="UF Health Require Image Alt Tags Development" --admin_user=admin --admin_password=password --admin_email=info@example.com
+	docker-compose exec --user www-data phpfpm wp plugin uninstall hello akismet
+	docker-compose exec --user www-data phpfpm wp plugin install any-ipsum debug-bar wp-inspect heartbeat-control query-monitor whats-running debug-bar-remote-requests wordpress-php-info wordpress-beta-tester
+	docker-compose exec --user www-data phpfpm wp plugin activate ufhealth-require-image-alt-tags
+fi
